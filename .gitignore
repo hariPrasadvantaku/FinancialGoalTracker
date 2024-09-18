@@ -1,0 +1,19 @@
+# Ignore node_modules (for JavaScript projects)
+node_modules/
+
+# Ignore Firebase credentials if stored in a local file
+firebaseConfig.json
+
+# Ignore environment variable files
+.env
+
+# Ignore system-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore logs
+*.log
+
+# Ignore build output 
+dist/
+build/
