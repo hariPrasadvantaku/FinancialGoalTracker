@@ -4,7 +4,7 @@ import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.
 
 // Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyDBNbDig8qwGQcGKrCEFNZCOy33mv8e96w",
+    apiKey: "IzaSyDBNbDig8qwGQcGKrCEFNZCOy33mv8e96w",
     authDomain: "goaltracker-012.firebaseapp.com",
     projectId: "goaltracker-012",
     storageBucket: "goaltracker-012.appspot.com",
