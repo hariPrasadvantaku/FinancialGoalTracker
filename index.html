@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Goal Tracker - Login</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+</head>
+<body>
+    <header>
+        <div class="main">
+            <div class="navbar">
+                <div class="icon">
+                    <b>Financial Goal Tracker</b>
+                </div>
+            </div>
+            <div class="content">
+                <h1>Welcome Back<br><span>Log in to your account</span></h1>
+                <p class="par">
+                    <b>Log in to continue!</b><br>
+                    Enter your credentials to access your account and keep track of your financial goals.
+                </p>
+            </div>
+            <div class="form-details">
+                <form id="login-form">
+                    <div class="user">
+                        <a href="index.html"><button type="button">Login</button></a>
+                        <a href="signup.html"><button type="button">Signup</button></a>
+                    </div>
+                    <input type="email" name="email" placeholder="Enter Email" required>
+                    <input type="password" name="password" placeholder="Enter Password" required>
+                    <button type="submit" name="Login">Login</button><br>
+                    <p>Don't have an account? <a href="signup.html">Sign up here</a></p>
+                    <p><a href="re_set.html">forgot password</p>
+                </form>
+            </div>
+        </div>
+    </header>
+    <hr>
+    
+    <script type="module" src="login.js"></script>
+</body>
+<footer>
+    <p>Author: Hari Prasad<br>
+    &copy; copyright reserved 2024<br>
+    <a href="mailto:vantakuhariprasad@gmail.com">Contact Us</a></p>
+</footer>
+</html>

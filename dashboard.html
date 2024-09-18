@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Financial Goal Tracker</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <script type="module" src="dashboard.js" defer></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js";
+        import { getFirestore, doc, getDoc, collection, getDocs, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore.js";
+        import { Chart, registerables } from "https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.esm.js";
+
+        Chart.register(...registerables);
+
+        // Initialize Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyDnghCopwlS-Xz2gAdKNq7guyem7M8l1-o",
+            authDomain: "goaltracker-0.firebaseapp.com",
+            projectId: "goaltracker-0",
+            storageBucket: "goaltracker-0.appspot.com",
+            messagingSenderId: "87756886188",
+            appId: "1:87756886188:web:31bbc4d365851376768f09",
+            measurementId: "G-V91YVDCNGJ"
+        };
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+            <div class="logo"><b>Financial Goal Tracker</b></div>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="goal.html">Goal</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="mailto:vantakuhariprasad@gmail.com">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="user-details">
+            <h2>User Details</h2>
+            <p id="user-name">Name: </p>
+            <p id="user-email">Email: N/A</p>
+            <p>Monthly Income: ₹<span id="monthly-income-display">0</span></p>
+            <button id="update-income-btn">Update Income</button>
+        </section>
+
+        <section class="income-expense-chart">
+            <h2>Income & Expense Overview</h2>
+            <canvas id="income-expense-chart" width="800" height="600"></canvas>
+        </section>
+
+        <section class="balance-overview">
+            <h2>Balance Overview</h2>
+            <p>Current Balance: ₹<span id="balance">0</span></p>
+            <canvas id="balance-overview-chart"></canvas>
+        </section>
+    </main>
+
+    <footer>
+        <p>Author: Hari Prasad<br>
+        &copy; copyright reserved 2024<br>
+        <a href="mailto:vantakuhariprasad@gmail.com">Contact Us</a></p>
+    </footer>
+</body>
+</html>

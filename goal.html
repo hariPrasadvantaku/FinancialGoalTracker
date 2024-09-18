@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Goal Tracker</title>
+    <link rel="stylesheet" href="goal.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.2/xlsx.full.min.js"></script>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+
+
+    <script src="script.js" type="module"></script>
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+            <div class="logo"><b>Financial Goal Tracker</b></div>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="goal.html">Goal</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="mailto:vantakuhariprasad@gmail.com">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section class="main-content" id="tracker">
+        <div class="head-text">
+            <h1>Access Your Financial Goal Tracker</h1>
+            <div class="under-head-text"></div>
+        </div>
+        <br />
+        
+        <div class="tracker-part">
+            <div class="tracker-balance">
+                  <span id="balance" class="current-balance"></span>
+            </div>
+            
+            <div class="currency-filter">
+                <div class="filter-left">
+                    <label for="currency">Select Currency:</label>
+                    <select id="currency" onchange="updateBalance()">
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="INR" selected>INR</option>
+                    </select>
+                </div>
+                <div class="filter-right">
+                    <label for="date" class="date-box">Choose Date:</label>
+                    <input type="date" id="date" placeholder="Date" />
+                </div>
+            </div>
+            
+            <div class="transaction-form">
+                <input type="text" id="description" placeholder="Description" />
+                <input type="number" id="amount" placeholder="Amount" />
+                <select id="type">
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+                <button id="add-transaction-btn">Add Transaction</button>
+                <button id="save-transaction-btn" style="display: none;">Save</button>
+                <button id="export-btn">Export</button>
+            </div>
+            
+            <div class="table-part" id="table-part">
+                <table id="transaction-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Amount</th>
+                            <th>Type</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Transaction rows will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</body>
+<!-- <footer>
+    <p>Author: Hari Prasad<br>
+    &copy; copyright reserved 2024<br>
+    <a href="mailto:vantakuhariprasad@gmail.com">Contact Us</a></p>
+</footer> -->
+</html>

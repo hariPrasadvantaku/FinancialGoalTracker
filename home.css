@@ -1,0 +1,207 @@
+/* Base styles for mobile-first design */
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #0a0a0a;
+  font-family: "Mullish", sans-serif;
+  color: white;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+/* .header{
+  width: 100%;
+  height: auto;
+}
+.main{
+  width: 100%;
+  height: auto; 
+} */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #da8fdfca;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* width: 100%; */
+  padding: 2px;
+  margin-right: 60px;
+  margin-left: 60px;
+  margin-top: 0px;
+  overflow-x: hidden;
+  position: sticky;
+  margin: 0;
+  top: 0;
+  bottom: 0;
+  height: auto;
+  z-index: 1000;
+}
+
+.logo {
+  color: #fff;
+  font-size: 28px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  margin-left: 50px;
+  margin-right: 290px;
+ 
+}
+
+.nav-links li {
+  margin-right: 20px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 18px;
+  color: #fff;
+  text-decoration: none;
+  align-items: center;
+  display: flex;
+}
+
+.nav-links a:hover {
+  transition: all 0.3s ease;
+  color: orangered;
+  cursor: pointer;
+}
+
+.buttons {
+  margin-left: auto;
+}
+
+.buttons button {
+  background-color: orangered;
+  padding: 8px;
+  border-radius: 0.375rem;
+  font-weight: bold;
+  color: white;
+  transition: background-color 0.5s, color 0.5s;
+}
+
+.buttons a {
+  text-decoration: none;
+  color: white;
+}
+
+.buttons button:hover {
+  background-color: white;
+  color: orangered;
+}
+
+.main-landing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin-top: 80px;
+  text-align: center;
+}
+
+.under-welcome-h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.under-h1 {
+  width: 50px;
+  height: 5px;
+  background-color: #f4ff61;
+  margin-bottom: 20px;
+}
+
+.under-welcome-p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.under-welcome-btn {
+  background-color: orangered;
+  padding: 14px 18px;
+  border-radius: 0.375rem;
+  font-weight: bold;
+  transition: background-color 0.5s;
+}
+
+.under-welcome-btn a {
+  text-decoration: none;
+  color: white;
+}
+
+.under-welcome-btn:hover {
+  background-color: white;
+  color: orangered;
+}
+
+.under-welcome-image img {
+  width: 100%;
+  height: auto;
+}
+
+
+footer {
+  background-color: #151515;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Media Queries for Larger Screens (Desktops) */
+@media (min-width: 768px) {
+  .nav-links {
+      margin-left: 50px;
+  }
+
+  .buttons {
+      margin-left: auto;
+  }
+
+  .main-landing {
+      flex-direction: row;
+      text-align: left;
+      height: 91vh;
+  }
+
+  .under-welcome-h1 {
+      font-size: 40px;
+  }
+
+  .under-welcome-p {
+      font-size: 18px;
+  }
+
+  .under-welcome-image img {
+      width: 100%;
+      height: auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main-landing {
+      max-width: 1100px;
+      margin: 0 auto;
+      justify-content: space-between;
+  }
+
+  .nav-links {
+      margin-right: 290px;
+  }
+}
