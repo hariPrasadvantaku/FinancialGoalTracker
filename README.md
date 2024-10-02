@@ -18,7 +18,7 @@ financial data through charts. The goal is to assist users in staying within the
 
 - **Frontend**: HTML, CSS, JavaScript
 - **Backend**: Firebase (Firestore for database and hosting)
-- **Charting**: Chart.js (or any chart library used in your project)
+- **Charting**: Chart.js 
 - **Hosting**: Firebase Hosting
 
 ## Contributing
