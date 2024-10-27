@@ -4,7 +4,7 @@
 
 The **Financial Goal Tracker** is a web application designed to help users track their monthly income and expenses. It provides a user-friendly dashboard that displays all transactions and visually represents 
 financial data through charts. The goal is to assist users in staying within their budget and alert them when they are approaching or exceeding their set limits.
-You can experience the website **myfgt.netlfiy.app**
+[myfgt.netligy.app](This is url of my project)
 
 ## Features
 
