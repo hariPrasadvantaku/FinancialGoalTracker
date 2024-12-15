@@ -1,37 +1,39 @@
-// import firebase from "https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js";
-// import "https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js";
-
 // Your Firebase configuration
 const firebaseConfig = {
-    apiKey: "IzaSyDBNbDig8qwGQcGKrCEFNZCOy33mv8e96w",
-    authDomain: "goaltracker-012.firebaseapp.com",
-    projectId: "goaltracker-012",
-    storageBucket: "goaltracker-012.appspot.com",
-    messagingSenderId: "205987460323",
-    appId: "1:205987460323:web:e0ff2955c8b247fe1201d6",
-    measurementId: "G-2G8ZE80Z3B"
-  };
-  
+    apiKey: "AIzaSyBoy7ROcgrk6-Rb0L20DehdQD_4k09K7xc",
+    authDomain: "goaltracker-76.firebaseapp.com",
+    projectId: "goaltracker-76",
+    storageBucket: "goaltracker-76.appspot.com",
+    messagingSenderId: "910571995639",
+    appId: "1:910571995639:web:7dca0fd37eea22ee55aef2",
+    measurementId: "G-E6QZ0FG1NY"
+};
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
+const auth = firebase.auth();
 
 let editedTransaction = null;
+
+auth.onAuthStateChanged((user) => {
+    if (!user) {
+        // User is not signed in, redirect to login or home page
+        window.location.href = 'index.html';
+    }
+});
 
 // Get user ID from session storage
 function getUserId() {
     const userId = sessionStorage.getItem("userId");
-    console.log("Retrieved User ID from session storage:", userId);
     return userId;
 }
 
 // Load data from Firestore
 function loadData() {
-    console.log("Loading data...");
     const userId = getUserId();
     if (!userId) {
-        console.error("User ID not found. Redirecting to login.");
-        window.location.href = "index.html"; // Redirect to login if user is not authenticated
+        window.location.href = "index.html";
         return;
     }
 
@@ -39,8 +41,7 @@ function loadData() {
 
     transactionsRef.onSnapshot((snapshot) => {
         const transactions = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        console.log("Transactions loaded:", transactions);
-        sessionStorage.setItem("transactions", JSON.stringify(transactions)); // Store transactions in sessionStorage
+        sessionStorage.setItem("transactions", JSON.stringify(transactions));
         updateTransactionTable(transactions);
         updateBalance(transactions);
     });
@@ -48,12 +49,8 @@ function loadData() {
 
 // Add a transaction
 async function addTransaction() {
-    console.log("Adding transaction...");
     const userId = getUserId();
-    if (!userId) {
-        console.error("User ID is not set. Cannot add transaction.");
-        return;
-    }
+    if (!userId) return;
 
     const descriptionInput = document.getElementById("description");
     const amountInput = document.getElementById("amount");
@@ -72,7 +69,7 @@ async function addTransaction() {
 
     const transaction = {
         amount,
-        date: chosenDate, // Store as JavaScript Date
+        date: chosenDate,
         description,
         type,
     };
@@ -80,12 +77,8 @@ async function addTransaction() {
     const transactionsRef = db.collection(`users/${userId}/transactions`);
 
     await transactionsRef.add(transaction);
-    console.log("Transaction added:", transaction);
-
-    // Update local transactions array and UI
     loadData();
 
-    // Clear input fields
     descriptionInput.value = '';
     amountInput.value = '';
     dateInput.value = '';
@@ -93,20 +86,15 @@ async function addTransaction() {
 
 // Delete a transaction
 async function deleteTransaction(transactionId) {
-    console.log("Deleting transaction...");
     const userId = getUserId();
     const transactionRef = db.collection(`users/${userId}/transactions`).doc(transactionId);
 
     await transactionRef.delete();
-    console.log("Transaction deleted:", transactionId);
-
-    // Reload data after deletion
     loadData();
 }
 
 // Edit a transaction
 async function editTransaction(transactionId) {
-    console.log("Editing transaction...");
     const userId = getUserId();
     const transactionRef = db.collection(`users/${userId}/transactions`).doc(transactionId);
 
@@ -121,14 +109,11 @@ async function editTransaction(transactionId) {
         document.getElementById("save-transaction-btn").style.display = "inline";
         document.getElementById("add-transaction-btn").style.display = "none";
         editedTransaction = { id: transactionId, ...transaction };
-    } else {
-        console.warn("Transaction not found.");
     }
 }
 
 // Save edited transaction
 async function saveTransaction() {
-    console.log("Saving transaction...");
     if (editedTransaction) {
         const descriptionInput = document.getElementById("description");
         const amountInput = document.getElementById("amount");
@@ -147,7 +132,7 @@ async function saveTransaction() {
 
         const updatedTransaction = {
             amount,
-            date: chosenDate, // Store as JavaScript Date
+            date: chosenDate,
             description,
             type,
         };
@@ -156,9 +141,7 @@ async function saveTransaction() {
         const transactionRef = db.collection(`users/${userId}/transactions`).doc(editedTransaction.id);
 
         await transactionRef.set(updatedTransaction);
-        console.log("Transaction updated:", updatedTransaction);
 
-        // Reset editedTransaction and UI
         editedTransaction = null;
         document.getElementById("description").value = '';
         document.getElementById("amount").value = '';
@@ -166,16 +149,16 @@ async function saveTransaction() {
         document.getElementById("save-transaction-btn").style.display = "none";
         document.getElementById("add-transaction-btn").style.display = "inline";
 
-        // Reload data after saving
         loadData();
-    } else {
-        console.warn("No transaction selected for editing.");
     }
 }
 
 // Update the transaction table
 function updateTransactionTable(transactions) {
     const tableBody = document.querySelector("#transaction-table tbody");
+
+    if (!tableBody) return;
+
     tableBody.innerHTML = '';
 
     transactions.forEach(transaction => {
@@ -187,14 +170,13 @@ function updateTransactionTable(transactions) {
             <td>${transaction.amount.toFixed(2)}</td>
             <td>${transaction.type.charAt(0).toUpperCase() + transaction.type.slice(1)}</td>
             <td>
-                <button class="edit-btn" data-id="${transaction.id}">Edit</button>
-                <button class="delete-btn" data-id="${transaction.id}">Delete</button>
+                <button class="edit-btn btn btn-sm btn-edit" data-id="${transaction.id}">Edit</button>
+                <button class="delete-btn btn btn-sm btn-delete" data-id="${transaction.id}">Delete</button>
             </td>
         `;
         tableBody.appendChild(row);
     });
 
-    // Reattach event listeners after updating the table
     document.querySelectorAll(".edit-btn").forEach(button => {
         button.addEventListener("click", (event) => {
             const id = event.target.dataset.id;
@@ -222,50 +204,71 @@ function updateBalance(transactions) {
         .reduce((total, transaction) => total + transaction.amount, 0);
 
     const balance = totalIncome - totalExpenses;
-    balanceElement.textContent = `Balance: ₹${balance.toFixed(2)}`; // Updated to INR (₹)
-}
-
-// Function to convert transactions to CSV format
-function convertTransactionsToCSV(transactions) {
-    const headers = ["Date", "Description", "Amount", "Type"];
-    const csvRows = [headers.join(",")];
-
-    transactions.forEach(transaction => {
-        const row = [
-            new Date(transaction.date.seconds * 1000).toLocaleDateString(), // Convert Firebase Timestamp to Date
-            transaction.description,
-            transaction.amount.toFixed(2),
-            transaction.type.charAt(0).toUpperCase() + transaction.type.slice(1)
-        ];
-        csvRows.push(row.join(","));
-    });
-
-    return csvRows.join("\n");
+    balanceElement.textContent = `Balance: ₹${balance.toFixed(2)}`;
 }
 
 // Function to trigger download of CSV file
 function downloadCSV(csvData, filename) {
-    const blob = new Blob([csvData], { type: 'text/csv' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.setAttribute('hidden', '');
-    a.setAttribute('href', url);
-    a.setAttribute('download', filename);
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    if (link.download !== undefined) {
+        // Create a download link
+        const url = URL.createObjectURL(blob);
+        link.setAttribute('href', url);
+        link.setAttribute('download', filename);
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
 }
 
-// Event listener for export button
-document.getElementById("export-btn").addEventListener("click", function () {
-    const transactions = JSON.parse(sessionStorage.getItem("transactions") || "[]"); // Assuming transactions are stored in sessionStorage
+// Export transactions to CSV
+function exportToCSV() {
+    const transactions = JSON.parse(sessionStorage.getItem("transactions"));
+
+    if (!transactions || transactions.length === 0) {
+        alert("No transactions to export.");
+        return;
+    }
+
+    // Generate the CSV data
     const csvData = convertTransactionsToCSV(transactions);
-    downloadCSV(csvData, 'transactions.csv');
+
+    // Append total income, total expenses, and balance at the end of the CSV
+    const totalIncome = transactions
+        .filter(transaction => transaction.type === 'income')
+        .reduce((total, transaction) => total + transaction.amount, 0);
+
+    const totalExpenses = transactions
+        .filter(transaction => transaction.type === 'expense')
+        .reduce((total, transaction) => total + transaction.amount, 0);
+
+    const balance = totalIncome - totalExpenses;
+
+    const summary = `\nTotal Income,₹${totalIncome.toFixed(2)}\nTotal Expenses,₹${totalExpenses.toFixed(2)}\nRemaining Balance,₹${balance.toFixed(2)}`;
+    const finalCSVData = `${csvData}${summary}`;
+
+    downloadCSV(finalCSVData, 'transactions.csv');
+}
+
+// Event listeners for buttons
+window.addEventListener('DOMContentLoaded', () => {
+    document.getElementById("add-transaction-btn").addEventListener("click", addTransaction);
+    document.getElementById("save-transaction-btn").addEventListener("click", saveTransaction);
+    document.getElementById("export-csv-btn").addEventListener("click", exportToCSV);
+
+    // Load initial data
+    loadData();
 });
 
-// Event listeners
-document.getElementById("add-transaction-btn").addEventListener("click", addTransaction);
-document.getElementById("save-transaction-btn").addEventListener("click", saveTransaction);
+// Helper function to convert transactions to CSV format
+function convertTransactionsToCSV(transactions) {
+    const headers = ['Date', 'Description', 'Amount', 'Type'];
+    const rows = transactions.map(transaction => {
+        const date = new Date(transaction.date.seconds * 1000).toLocaleDateString();
+        return [date, transaction.description, transaction.amount.toFixed(2), transaction.type.charAt(0).toUpperCase() + transaction.type.slice(1)].join(',');
+    });
 
-// Load data when the page loads
-document.addEventListener("DOMContentLoaded", loadData);
+    return [headers.join(','), ...rows].join('\n');
+}
