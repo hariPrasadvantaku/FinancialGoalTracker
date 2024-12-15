@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Financial Goal Tracker</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="dashboard.css">
     <script type="module" src="dashboard.js" defer></script>
+   <script type="module" src="logout.js"></script>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
         import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js";
@@ -24,49 +27,62 @@
             appId: "1:87756886188:web:31bbc4d365851376768f09",
             measurementId: "G-V91YVDCNGJ"
         };
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
+        // const app = initializeApp(firebaseConfig);
+        // const auth = getAuth(app);
+        // const db = getFirestore(app);
     </script>
 </head>
 <body>
-    <nav>
-        <div class="navbar">
-            <div class="logo"><b>Financial Goal Tracker</b></div>
-            <ul class="nav-links">
-                <li><a href="home.html">Home</a></li>
-                <li><a href="goal.html">Goal</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="mailto:vantakuhariprasad@gmail.com">Contact</a></li>
-            </ul>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><b>Financial Goal Tracker</b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="goal.html">Goal</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mailto:vantakuhariprasad@gmail.com">Contact</a></li>
+                </ul>
+                <div class="buttons ms-3">
+                    <button id="logout-button" class="btn btn-danger" type="button">Log out</button>
+                </div>    
+            </div>
         </div>
     </nav>
-
-    <main class="main-content">
-        <section class="user-details">
+    
+    <main class="container mt-5 pt-5">
+        <section class="user-details mb-4 p-4 bg-dark text-white rounded">
             <h2>User Details</h2>
             <p id="user-name">Name: </p>
             <p id="user-email">Email: N/A</p>
             <p>Monthly Income: ₹<span id="monthly-income-display">0</span></p>
-            <button id="update-income-btn">Update Income</button>
+            <button id="update-income-btn" class="btn btn-warning">Update Income</button>
         </section>
 
-        <section class="income-expense-chart">
+        <section class="income-expense-chart mb-4">
             <h2>Income & Expense Overview</h2>
             <canvas id="income-expense-chart" width="800" height="600"></canvas>
         </section>
 
-        <section class="balance-overview">
+        <section class="balance-overview mb-4 p-4 bg-dark text-white rounded">
             <h2>Balance Overview</h2>
-            <p>Current Balance: ₹<span id="balance">0</span></p>
+            <p>Current Balance: <span id="balance">0</span></p>
             <canvas id="balance-overview-chart"></canvas>
         </section>
     </main>
 
-    <footer>
+    <footer class="bg-dark text-white text-center py-4">
         <p>Author: Hari Prasad<br>
         &copy; copyright reserved 2024<br>
-        <a href="mailto:vantakuhariprasad@gmail.com">Contact Us</a></p>
+        <a href="mailto:vantakuhariprasad@gmail.com" class="text-white">Contact Us</a></p>
     </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
