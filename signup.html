@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Financial Goal Tracker - Signup</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
 </head>
+
 <body>
     <header>
-        <div class="main">
-            <div class="navbar">
-                <div class="icon">
-                    <b>Financial Goal Tracker</b>
-                </div>
-            </div>
-            <div class="content">
+        <div class="main d-flex align-items-center justify-content-center">
+            <div class="content text-black">
                 <h1>Navigate your financial future<br><span>with precision</span></h1>
                 <p class="par">
                     <b>Get Started Today!</b><br>
@@ -24,28 +22,31 @@
                 </p>
             </div>
             <div class="form-details">
-                <form id="signup-form">
-                    <div class="user">
-                        <a href="index.html"><button type="button">Login</button></a>
-                        <a href="signup.html"><button type="button">Signup</button></a>
+                <form id="signup-form" class="bg-dark text-light rounded p-4 shadow">
+                    <div class="user text-center mb-3">
+                        <a href="index.html"><button type="button" class="btn btn-outline-light">Login</button></a>
+                        <a href="signup.html"><button type="button" class="btn btn-outline-light">Signup</button></a>
                     </div>
-                    <input type="text" name="name" placeholder="Enter Username" required>
-                    <input type="email" name="email" placeholder="Enter Email" required>
-                    <input type="password" name="password" placeholder="Enter Password" required>
-                    <!-- <input type="password" name="confirm_password" placeholder="Enter Confirm Password" required>
-                    <input type="tel" name="phoneNumber" placeholder="Enter Phone Number" pattern="[0-9]{10}" required> -->
-                    <button type="submit" name="Signup">Signup</button><br>
-                    <p>Already have an account? <a href="index.html">Login here</a></p>
+                    <input type="text" class="form-control mb-3" name="name" placeholder="Enter Username" required>
+                    <input type="email" class="form-control mb-3" name="email" placeholder="Enter Email" required>
+                    <input type="password" class="form-control mb-3" name="password" placeholder="Enter Password" required>
+                    <input type="password" class="form-control mb-3" name="confirm_password" placeholder="Confirm Password" required>
+                    <button type="submit" name="Signup" class="btn btn-warning btn-block">Signup</button>
+                    <p class="text-center mt-3">Already have an account? <a href="index.html" class="text-warning">Login here</a></p>
                 </form>
             </div>
         </div>
     </header>
     <hr>
-    <footer>
+    <footer class="text-center bg-light py-3">
         <p>Author: Hari Prasad<br>
-        &copy; copyright reserved 2024<br>
+        &copy; Copyright reserved 2024<br>
         <a href="mailto:vantakuhariprasad@gmail.com">Contact Us</a></p>
     </footer>
     <script type="module" src="signup.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>
