@@ -1,39 +1,132 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Finacial Goal Tracker</title>
-        <link rel="stylesheet" href="home.css">
-    </head>
-    <body>
-        <nav>
-            <div class="navbar">
-                <div class="logo"><b>Financial Goal Tracker</b></div>
-                    <ul class="nav-links">
-                        <li><a href="home.html">Home</a></li>
-                        <li><a href="goal.html">Goal</a></li>
-                        <li><a href="dashboard.html">Dashboard</a></li>
-                        <li><a href="mailto:vantakuhariprasad@gmail.com">Contact</a></li>
-                    </ul>
-                <div class="buttons">
-                    <button type="submit"><a href="index.html" class="btn-head">Log out</a></button>
-                </div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Goal Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script> <!-- Add this line -->
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+<script src="home.js" type="module"></script>
+    <script src="logout.js" type="module"></script>
+    <style>
+        /* Custom CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            /* background-color: #d8dbde; */
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #da8fdfca;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+
+        .section-box {
+            background-color: #efc2c2;
+            padding: 50px 0;
+        }
+
+        .main-landing {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .under-welcome-h1 {
+            font-size: 2.5rem;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+
+        .under-h1 {
+            width: 50px;
+            height: 4px;
+            background-color: #da8fdf;
+            margin: 20px auto;
+        }
+
+        .under-welcome-p {
+            font-size: 1.1rem;
+            color: #666666;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        .under-welcome-btn {
+            padding: 10px 30px;
+            font-size: 1rem;
+            border: none;
+        }
+
+        .under-welcome-image {
+            text-align: center;
+        }
+
+        footer {
+            background-color: #151515;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><b>Financial Goal Tracker</b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="goal.html">Goal</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mailto:vantakuhariprasad@gmail.com">Contact</a></li>
+                </ul>
+                <div class="buttons ms-3">
+                    <button id="logout-button" class="btn btn-danger" type="button">Log out</button>
+                </div>                
             </div>
-        </nav>
-        <section class="section-box">
-            <div class="main-landing">
-              <div class="content">
+        </div>
+    </nav>
+
+    <section class="section-box mt-5 pt-5">
+        <div class="main-landing container">
+            <div class="content text-center">
                 <h1 class="under-welcome-h1">Take Control of Your Finances</h1>
-                <div class="under-h1"></div>
+                <div class="under-h1 mb-3"></div>
                 <p class="under-welcome-p">
                     Welcome to Financial Goal Tracker, your one-stop solution for managing your financial goals and taking control of your finances.
                     With our platform, you can set clear objectives, track your progress, and make informed decisions to achieve financial success.
                 </p>
-                <button class="under-welcome-btn"><a href="goal.html">Create Goal</a></button>
-              </div>
-              <div class="under-welcome-image">
-                <img src="home_img.jpeg" alt="Power Finance" />
-              </div>
+                <button class="under-welcome-btn btn btn-warning"><a href="goal.html" class="text-white" style="text-decoration: none;">Create Goal</a></button>
             </div>
-          </section>
-    </body>
+            <div class="under-welcome-image mt-4">
+                <img src="home_img.jpeg" alt="Power Finance" class="img-fluid" />
+            </div>
+        </div>
+    </section>
+
+    <footer class="mt-5">
+        <p>Author: Hari Prasad<br>
+            &copy; copyright reserved 2024<br>
+            <a href="mailto:vantakuhariprasad@gmail.com">Contact Us</a>
+        </p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
