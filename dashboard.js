@@ -7,13 +7,13 @@ Chart.register(...registerables);
 
 // Your Firebase configuration
 const firebaseConfig = {
-    apiKey: "IzaSyDBNbDig8qwGQcGKrCEFNZCOy33mv8e96w",
-    authDomain: "goaltracker-012.firebaseapp.com",
-    projectId: "goaltracker-012",
-    storageBucket: "goaltracker-012.appspot.com",
-    messagingSenderId: "205987460323",
-    appId: "1:205987460323:web:e0ff2955c8b247fe1201d6",
-    measurementId: "G-2G8ZE80Z3B"
+    apiKey: "AIzaSyBoy7ROcgrk6-Rb0L20DehdQD_4k09K7xc",
+    authDomain: "goaltracker-76.firebaseapp.com",
+    projectId: "goaltracker-76",
+    storageBucket: "goaltracker-76.appspot.com",
+    messagingSenderId: "910571995639",
+    appId: "1:910571995639:web:7dca0fd37eea22ee55aef2",
+    measurementId: "G-E6QZ0FG1NY"
   };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const userId = sessionStorage.getItem("userId");
     
     if (userId) {
-        console.log(`User ID from session: ${userId}`);
+        // console.log(`User ID from session: ${userId}`);
 
         // Load user details and transactions
         loadUserDetails(userId);
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         document.getElementById("update-income-btn").addEventListener("click", () => updateMonthlyIncome(userId));
     } else {
-        window.location.href = "login.html";
+        window.location.href = "index.html";
     }
 });
 
@@ -44,7 +44,7 @@ async function loadUserDetails(userId) {
 
         if (docSnap.exists()) {
             const userData = docSnap.data();
-            console.log("User data fetched:", userData);
+            // console.log("User data fetched:", userData);
 
             const userName = userData.name || 'N/A';
             const userEmail = userData.email || 'N/A';
